@@ -7,18 +7,10 @@ on:
 
 jobs:
   ping:
+    # Use the official Microsoft Playwright container
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright/python:v1.44.0-jammy
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-          
-      - name: Install Playwright
-        run: |
-          pip install playwright
-          playwright install chromium
-          
       - name: Wake the App
         run: |
           python -c "
@@ -28,11 +20,9 @@ jobs:
               browser = p.chromium.launch()
               page = browser.new_page()
               print('Navigating to app...')
-              page.goto('https://impaqtr.streamlit.app/') # Make sure this matches your exact URL
-              print('Waiting for page to load...')
-              time.sleep(20) # Force the script to stay open for 20 seconds to allow wake-up
-              print('Checking for main element...')
-              page.wait_for_selector('[data-testid=\"stAppViewContainer\"]', timeout=40000)
+              page.goto('https://impaqtr.streamlit.app/')
+              # We wait for the app container to ensure it loaded
+              page.wait_for_selector('[data-testid=\"stAppViewContainer\"]', timeout=60000)
               print('App successfully loaded!')
               browser.close()
           "
