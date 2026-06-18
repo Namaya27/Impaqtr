@@ -9,30 +9,30 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
           
-      - name: Install Playwright and dependencies
+      - name: Install Playwright
         run: |
           pip install playwright
           playwright install chromium
           
-      - name: Run Headless Browser to wake app
+      - name: Wake the App
         run: |
           python -c "
           from playwright.sync_api import sync_playwright
+          import time
           with sync_playwright() as p:
               browser = p.chromium.launch()
               page = browser.new_page()
-              # Replace with your actual URL
-              page.goto('https://impaqtrdatasharing.streamlit.app/')
-              # Wait for a specific element to ensure the app is fully loaded
-              page.wait_for_selector('[data-testid=\"stAppViewContainer\"]', timeout=60000)
-              print('App successfully loaded')
+              print('Navigating to app...')
+              page.goto('https://impaqtr.streamlit.app/') # Make sure this matches your exact URL
+              print('Waiting for page to load...')
+              time.sleep(20) # Force the script to stay open for 20 seconds to allow wake-up
+              print('Checking for main element...')
+              page.wait_for_selector('[data-testid=\"stAppViewContainer\"]', timeout=40000)
+              print('App successfully loaded!')
               browser.close()
           "
