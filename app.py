@@ -499,17 +499,18 @@ elif view_mode == "🏆 Triple-Win Strategic Matrix":
                 {
                     "metric": "Forecast Accuracy Improvement",
                     "impact": "15–30%",
-                    "source": "McKinsey Supply Chain Analytics Research"
+                    "source": "McKinsey Supply Chain Analytics Research", "url": "https://www.mckinsey.com/capabilities/operations/our-insights/supply-chain-40--the-next-generation-digital-supply-chain?"
                 },
                 {
                     "metric": "Inventory Reduction",
                     "impact": "10–20%",
-                    "source": "McKinsey"
+                    "source": "McKinsey", "url": "https://www.mckinsey.com/capabilities/operations/our-insights/supply-chain-40--the-next-generation-digital-supply-chain?"
                 },
                 {
                     "metric": "Stockout Reduction",
                     "impact": "20–50%",
-                    "source": "Gartner"
+                    "source": "Gartner", "url": "https://www.gartner.com/en/documents/6902266?"
+
                 }
             ]
         },
@@ -559,17 +560,17 @@ elif view_mode == "🏆 Triple-Win Strategic Matrix":
                 {
                     "metric": "On-Shelf Availability Improvement",
                     "impact": "5–15%",
-                    "source": "Accenture Consumer Goods Research"
+                    "source": "Accenture Consumer Goods Research", "url": "https://www.accenture.com/be-en/insights/consumer-goods-services/reinventing-consumer-goods-value-chain?" 
                 },
                 {
                     "metric": "Supply Chain Cost Reduction",
                     "impact": "5–15%",
-                    "source": "Accenture"
+                    "source": "Accenture", "url": "https://newsroom.accenture.com/news/2015/socially-responsible-supply-chains-create-triple-advantage-increased-revenue-reduced-cost-and-greater-brand-value-finds-accenture-and-world-economic-forum?" 
                 },
                 {
                     "metric": "Promotion Effectiveness Improvement",
                     "impact": "10–30%",
-                    "source": "Deloitte"
+                    "source": "Deloitte", "url": "https://www.deloitte.com/global/en/Industries/consumer.html?utm_source%3Dchatgpt.com&sa=D&source=docs&ust=1781795529385986&usg=AOvVaw0MTOeiLq43lc7EeAjPgCfg" 
                 }
             ]
         },
