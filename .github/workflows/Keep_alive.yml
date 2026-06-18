@@ -7,22 +7,27 @@ on:
 
 jobs:
   ping:
-    # Use the official Microsoft Playwright container
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright/python:v1.44.0-jammy
     steps:
-      - name: Wake the App
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install requests
+        run: pip install requests
+      - name: Ping with Browser Headers
         run: |
           python -c "
-          from playwright.sync_api import sync_playwright
-          import time
-          with sync_playwright() as p:
-              browser = p.chromium.launch()
-              page = browser.new_page()
-              print('Navigating to app...')
-              page.goto('https://impaqtr.streamlit.app/')
-              # We wait for the app container to ensure it loaded
-              page.wait_for_selector('[data-testid=\"stAppViewContainer\"]', timeout=60000)
-              print('App successfully loaded!')
-              browser.close()
+          import requests
+          url = 'https://impaqtr.streamlit.app/'
+          headers = {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+          }
+          response = requests.get(url, headers=headers)
+          print(f'Status Code: {response.status_code}')
+          if response.status_code == 200:
+              print('Successfully reached the app!')
+          else:
+              print(f'Failed with status code: {response.status_code}')
+              exit(1)
           "
